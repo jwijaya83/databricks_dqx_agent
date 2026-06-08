@@ -23,10 +23,15 @@ Directory Structure:
         ├── lakebase.py       # Lakebase service
         └── ai.py             # AI analysis service
 """
+import os
 from app import create_app
 
 # Create the Flask application
 app = create_app()
+
+if __name__ == "__main__":
+    port = int(os.environ.get("DATABRICKS_APP_PORT", 8000))
+    app.run(host="0.0.0.0", port=port)
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8000)
